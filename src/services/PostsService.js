@@ -7,9 +7,15 @@ class PostsService {
    console.log(res.data.posts[0])
    AppState.posts = res.data.posts
  }
- async getPostByQuery(params){
-   const res = await api.get('api/posts/', {params})
+ async getByQuery(params){
+   console.log(params)
+   const res = await api.get('api/posts/', { params })
    AppState.searchResults = res.data.posts
+ }
+ async createPost(editable){
+   const res = await api.post('api/posts', editable)
+   console.log(res.data)
+   AppState.posts.push(res.data)
  }
 }
 

@@ -2,10 +2,20 @@ import { AppState } from "../AppState"
 import { api } from "./AxiosService"
 
 class ProfilesService {
- async getProfile(id){
+  async getMyProfile(id){
+    const res = await api.get('api/profiles/' + id)
+    console.log(res.data)
+    AppState.myProfile = res.data
+ }
+  async getProfile(id){
    const res = await api.get('api/profiles/'+id)
    console.log(res.data)
    AppState.activeProfile = res.data
+ }
+ async getProfilesByQuery(params){
+   const res = await api.get('api/profiles', { params })
+   console.log(res.data)
+  //  AppState.foundProfiles = res.data
  }
 }
 

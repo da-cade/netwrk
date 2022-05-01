@@ -30,14 +30,19 @@
       <!-- LOGIN COMPONENT HERE -->
       <Login />
     </div>
+    <div class="mx-2">
+      <Searchbar />
+    </div>  
   </nav>
 </template>
 
 <script>
+import Searchbar from "./Searchbar.vue";
 export default {
   setup() {
     return {};
-  },
+  
+    Searchbar},
 };
 </script>
 

@@ -1,65 +1,91 @@
 <template>
-  <div class="full-page container">
-    <div class="full-page row">
-      <div class="col-md-2 d-flex flex-column">
-        <Navbar />
-        <div>
-          <img class="rounded-circle" src="" alt="">
+      <div class="col-md-8">
+        <div v-if="myProfile.id" class="row">
+          <div class="col-12">
+            <div class="d-flex w-100 bg-secondary my-5 rounded shadow p-3">
+              <div class="">
+                <img @click="goToMyProfile()" class="profile-img hover rounded-circle" :src="myProfile.picture" alt="">
+              </div>
+              <div class="w-100 ms-2">
+                <form @submit.prevent="newPost()">
+                  <label for="new-post-field" class="form-label"></label>
+                  <textarea
+                    placeholder="Share what's happening..."
+                    type="text"
+                    class="form-control"
+                    id="new-post-field"
+                    v-model="editable.body" />
+                </form>
+                <div class="d-flex justify-content-between mx-1 mt-3">
+                  <!-- //TODO create some kind of video thing?? -->
+                  <i class="mdi mdi-image-multiple hover">Photo/Video</i>
+                  <i class="mdi mdi-send hover" @click="newPost()">Submit</i>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
-        <div>
-          <p class="m-0">joined timeago</p>
-          <h5>Profile name</h5>
-        </div>
-        <div>
-          <ul>
-            <li>Live Links Optional</li>
-            <li>Live Links Optional</li>
-            <li>Live Links Optional</li>
-          </ul>
-        </div>
+        <Post v-for="p in posts" :key="p.id" :post="p" />
       </div>
-      <div class="col-md-7">
-        <div class="container">
-          <Post v-for="p in posts" :key="p.id" :post="p" />
-        </div>
-      </div>
-      <div class="col-md-3">
-
-      </div>
-    </div>
-  </div>
-
+      <div class="col-md-2"></div>
 </template>
 
 <script>
-import { computed, onMounted } from "@vue/runtime-core"
+import { computed, onMounted, ref } from "@vue/runtime-core"
 import { postsService } from "../services/PostsService"
-import { profilesService } from "../services/ProfilesService"
 import Pop from "../utils/Pop"
 import { logger } from "../utils/Logger"
 import { AppState } from "../AppState"
+import { useRouter } from "vue-router"
 export default {
   name: 'Home',
   setup(){
+    const editable = ref({})
+    const router = useRouter()
     onMounted( async () => {
       try {
         await postsService.getAllPosts()
-        // await profilesService.getProfile()
       } catch (error) {
         logger.error(error)
         Pop.toast(error.message, 'error')
       }
     })
   return {
-    posts: computed(() => AppState.posts)
+    async newPost(){
+      try {
+        await postsService.createPost(editable.value)
+      } catch (error) {
+        logger.error(error)
+        Pop.toast(error.message, 'error')
+      }
+    },
+    goToMyProfile(){
+      router.push({ name: 'ProfilePage' , params: { id: this.myProfile.id } })  
+    },
+    posts: computed(() => AppState.posts),
+    myProfile: computed(() => AppState.myProfile),
+    editable
     }
   }
 }
 </script>
 
 <style scoped lang="scss">
-  .full-page{
-    min-height: 100vh;
-    max-width: 100vw;
+
+  .new-post-field{
+    min-height: 20vh;
+  }
+  .profile-img{
+    height: 10vh;
+    width: 10vh;
+    object-fit: cover;
+  }
+  textarea{
+    min-height: 10vh;
+    // max-width: 40vh;
+    min-width: 100%;
+  }
+  .hover{
+    cursor: pointer;
   }
 </style>

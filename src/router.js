@@ -27,6 +27,17 @@ const routes = [
     name: 'ProfilePage',
     component: loadPage('ProfilePage')
   },
+  {
+    path: '/profiles/:id',
+    name: 'MyProfilePage',
+    component: loadPage('MyProfilePage')
+  },
+  {
+    path: '/search_results',
+    name: 'SearchPage',
+    component: loadPage('SearchPage')
+  },
+  
 ]
 
 export const router = createRouter({
