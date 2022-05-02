@@ -138,6 +138,7 @@ import { AppState } from "../AppState"
 import Pop from "../utils/Pop"
 import { logger } from "../utils/Logger"
 import { accountService } from "../services/AccountService"
+import { Modal } from "bootstrap"
 export default {
   setup(){
     const editable = ref({})
@@ -147,6 +148,7 @@ export default {
       async submitEdits(){
         try {
           await accountService.submitEdits(editable.value)
+          Modal.getOrCreateInstance(document.getElementById('edit-profile-modal')).hide()
         } catch (error) {
           logger.error(error)
           Pop.toast(error.message, 'error')
@@ -179,8 +181,8 @@ textarea {
   margin-bottom: 1rem;
 }
 .floater{
-  // left: 10px;
-  bottom: 57%; 
+  // bottom: 0; 
+  top: 24%;
   position: absolute;
 }
 </style>

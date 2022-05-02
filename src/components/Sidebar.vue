@@ -57,9 +57,9 @@ export default {
     background-color: rgba(172, 255, 47, 0.452);
     
   }
-    @media screen and (min-width: 750px) {
-    .sidebar {
-      display: none;
-    }
-  }
+    // @media screen and (min-width: 750px) {
+    // .sidebar {
+    //   display: none;
+    // }
+  // }
 </style>

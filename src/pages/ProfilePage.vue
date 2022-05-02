@@ -44,9 +44,6 @@
     </div>
       
   <Modal id="edit-profile-modal" >
-    <!-- <template #modal-bg-slot>
-       <div class="header-bg" :style="{'background-image':`url(${activeProfile.coverImg})`}"></div>
-    </template> -->
     <template #modal-slot>
       <div class="p-3 modal-dimensions">
       <ProfileForm />

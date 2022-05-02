@@ -8,7 +8,7 @@
           <h3>A Very Sad Place</h3>
       </div>
       </router-link>
-    <button
+    <!-- <button
       class="navbar-toggler"
       type="button"
       data-bs-toggle="collapse"
@@ -18,7 +18,7 @@
       aria-label="Toggle navigation"
     >
       <span class="navbar-toggler-icon" />
-    </button>
+    </button> -->
     <div class="ms-auto" >
       
       <!-- LOGIN COMPONENT HERE -->
