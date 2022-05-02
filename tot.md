@@ -1,20 +1,20 @@
 
-[] Users Can Register, Login, and Logout
-[] The Home page displays all posts, login not required
-[] Clicking on a creator image navigates to that users Profile page
-[] The Profile page shows all posts made by that user
-[] The Profile page includes the users profile details (picture, name, bio, social media links, cover image, alumni status, class), the  
+[x] Users Can Register, Login, and Logout
+[x] The Home page displays all posts, login not required
+[x] Clicking on a creator image navigates to that users Profile page
+[x] The Profile page shows all posts made by that user
+[x] The Profile page includes the users profile details (picture, name, bio, social media links, cover image, alumni status, class), the  
       mock is a good guide here but not required.
-[] Refreshing while on the profile page does not navigate the user home, and the profile page still shows its required content
+[x] Refreshing while on the profile page does not navigate the user home, and the profile page still shows its required content
 [] On Home and Profile users can to navigate to 'older' or 'newer' posts if available
-[] Users have a search form that will display the results of the search either in a new SearchPage or on the Home page
-[] All posts render all post data (creator details, createdAt, body, like count), the mock is a good guide here but not required.
-[] Each page shows at least 2 ads from api collection provided
-[] Once logged in Users can Create Posts
-[] Once logged in Users can Delete their Posts
-[] Once logged in Users can Like/unlike Posts
-[] Once logged in Users can Edit their Profile
-[] The UI prevents the modification/deletion of data the user did not create (disabled, hidden, etc.)
+[x] Users have a search form that will display the results of the search either in a new SearchPage or on the Home page
+[x] All posts render all post data (creator details, createdAt, body, like count), the mock is a good guide here but not required.
+[x] Each page shows at least 2 ads from api collection provided
+[x] Once logged in Users can Create Posts
+[x] Once logged in Users can Delete their Posts
+[x] Once logged in Users can Like/unlike Posts
+[x] Once logged in Users can Edit their Profile
+[x] The UI prevents the modification/deletion of data the user did not create (disabled, hidden, etc.)
 [] Application UI adheres to Phase I: Code Cleanup of the CodeWorks Design Doc
 
 [] Stretch Goals:

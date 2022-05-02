@@ -3,7 +3,7 @@
     <form @submit.prevent="searchAny()">
       <label for="searchbar" class="visually-hidden">Search anything</label>
       <input v-model="query.search" type="text" name="searchbar" id="searchbar" placeholder="Search...">
-      <i class="mt-2 ms-1 mdi mdi-magnify"></i>
+      <i class="mt-2 ms-1 mdi mdi-magnify" @click="searchAny()"></i>
     </form>
   </div>
 </template>
@@ -24,11 +24,13 @@ export default {
       query,
       async searchAny(){
         try {
-          const input = query.value.search
-          await postsService.getByQuery({ name: input, body: input })
+          if(query.value.search !== undefined){
+            const input = query.value.search
+            await postsService.getByQuery({ name: input, body: input })
+            router.push({name: 'SearchPage'})
+          }
           // we can only search profiles by ID NOTE
           // await profilesService.getProfilesByQuery({ name: input, class: input })
-          router.push({name: 'SearchPage'})
         } catch (error) {
           logger.error(error)
           Pop.toast(error.message, 'error')

@@ -1,10 +1,13 @@
 <template>
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark px-3">
-    <router-link class="navbar-brand d-flex" :to="{ name: 'Home' }">
-      <div class="d-flex flex-column align-items-center">
-        <img alt="logo" src="../assets/img/cw-logo.png" height="45" />
+  <nav class="navbar navbar-expand-lg sticky-top navbar-dark">
+      <router-link class="navbar-brand d-flex" :to="{ name: 'Home' }">
+      <div class="d-flex align-items-center">
+        <div>
+          <img alt="logo" src="https://64.media.tumblr.com/6e13ce86aadb6fc8806c386bce48616e/tumblr_nq5nxokB771svwlszo1_1280.png" height="60" />
+        </div>
+          <h3 class="p-0 m-0" >A Very Sad Place</h3>
       </div>
-    </router-link>
+      </router-link>
     <button
       class="navbar-toggler"
       type="button"
@@ -16,17 +19,8 @@
     >
       <span class="navbar-toggler-icon" />
     </button>
-    <div class="collapse navbar-collapse" id="navbarText">
-      <ul class="navbar-nav me-auto">
-        <li>
-          <router-link
-            :to="{ name: 'About' }"
-            class="btn text-success lighten-30 selectable text-uppercase"
-          >
-            About
-          </router-link>
-        </li>
-      </ul>
+    <div class="ms-auto" >
+      
       <!-- LOGIN COMPONENT HERE -->
       <Login />
     </div>
@@ -47,6 +41,9 @@ export default {
 </script>
 
 <style scoped>
+.navbar{
+  background-color: rgba(137, 43, 226, 0.301);
+}
 a:hover {
   text-decoration: none;
 }
@@ -54,7 +51,7 @@ a:hover {
   text-transform: uppercase;
 }
 .navbar-nav .router-link-exact-active {
-  border-bottom: 2px solid var(--bs-success);
+  border-bottom: 2px solid rgba(0, 0, 0, 0.603);
   border-bottom-left-radius: 0;
   border-bottom-right-radius: 0;
 }

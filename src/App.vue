@@ -1,12 +1,22 @@
 <template>
   <main>
-    <Navbar />
+    
     <div class="full-page container">
       <div class="full-page row">
         <div class="col-md-2">
-          <Sidebar v-if="myProfile.id"/>
+            <Sidebar v-if="myProfile.id"/>
         </div>
-        <router-view />
+        <div class="col-md-10 p-0">
+          <Navbar />
+          <div class="row g-0">
+            <div class="col-md-10">
+              <router-view />
+            </div>
+            <div class="col-md-2">
+              <FlagHost />
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </main>
@@ -45,4 +55,12 @@ export default {
     max-height: 20vh;
     max-width: auto;
  }
+  .profile-img{
+    height: 10vh;
+    width: 10vh;
+    object-fit: cover;
+  }
+  .object-fit{
+    object-fit: cover;
+  }
 </style>
