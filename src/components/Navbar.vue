@@ -5,7 +5,7 @@
         <div>
           <img alt="logo" src="https://64.media.tumblr.com/6e13ce86aadb6fc8806c386bce48616e/tumblr_nq5nxokB771svwlszo1_1280.png" height="60" />
         </div>
-          <h3 class="p-0 m-0" >A Very Sad Place</h3>
+          <h3>A Very Sad Place</h3>
       </div>
       </router-link>
     <button

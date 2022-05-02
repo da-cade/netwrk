@@ -31,6 +31,7 @@ export default {
     return {
       appState: computed(() => AppState),
       myProfile: computed(() => AppState.myProfile)
+      
     }
   }
 }
@@ -39,6 +40,7 @@ export default {
 @import "./assets/scss/main.scss";
   main{
     scroll-behavior: smooth;
+    // background-color: rgb(1, 1, 37);
   }
   .full-page{
     min-height: 100vh;
@@ -63,4 +65,5 @@ export default {
   .object-fit{
     object-fit: cover;
   }
+
 </style>

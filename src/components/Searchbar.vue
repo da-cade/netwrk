@@ -26,8 +26,10 @@ export default {
         try {
           if(query.value.search !== undefined){
             const input = query.value.search
-            await postsService.getByQuery({ name: input, body: input })
+            await postsService.getByQuery({ body: input })
+            // await postsService.getByQuery({ name: input })
             router.push({name: 'SearchPage'})
+            query.value.search = ''
           }
           // we can only search profiles by ID NOTE
           // await profilesService.getProfilesByQuery({ name: input, class: input })

@@ -10,22 +10,13 @@
         </div>
       </div>
       <div class="info my-3 mw-100">
-        <p class="m-0">{{myProfile.class}}</p>
-        <span>{{myProfile.name}}</span>   
+        <p v-show="myProfile.class" class="m-0">{{myProfile.class}}</p>
+        <h5>{{myProfile.name}}</h5>   
       </div>
       <div class="d-flex flex-column my-2">
-        
-          <!-- TODO -->
-          <router-link :to="myProfile.github">
-            <i class="mdi mdi-github"></i><span>Github</span>
-          </router-link>
-          <router-link :to="myProfile.resume">
-            <i class="mdi mdi-account-circle"></i><span>Resume</span>
-          </router-link>
-          <router-link :to="myProfile.linkedin">
-            <i class="mdi mdi-linkedin"></i><span>LinkedIn</span>
-          </router-link>
-        
+        <a v-show="myProfile.github" target="blank" :href="myProfile.github"><i class="mdi mdi-github me-2"></i>github</a>
+        <a v-show="myProfile.resume" target="blank" :href="myProfile.resume"><i class="mdi mdi-account-circle me-2"></i>resume</a>
+        <a v-show="myProfile.linkedin" target="blank" :href="myProfile.linkedin"><i class="mdi mdi-linkedin me-2"></i>linkedIn</a>
       </div>
     </div>
   </div>
@@ -51,8 +42,8 @@ export default {
 }
 .grad-icon{
   position: absolute;
-  bottom: 0rem;
-  right: 1rem;
+  top: -2rem;
+  right: 2.7rem;
   font-size: 32px;
 }
  .hover{
@@ -64,5 +55,11 @@ export default {
   .sidebar{
     min-height: 100%;
     background-color: rgba(172, 255, 47, 0.452);
+    
+  }
+    @media screen and (min-width: 750px) {
+    .sidebar {
+      display: none;
+    }
   }
 </style>

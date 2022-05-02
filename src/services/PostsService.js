@@ -14,8 +14,8 @@ class PostsService {
    }
  }
  async getByQuery(params){
-   console.log(params)
    const res = await api.get('api/posts/', { params })
+   console.log(res.data.posts)
    AppState.searchResults = res.data.posts
    AppState.pageData = {
     page: res.data.page,
@@ -38,6 +38,7 @@ class PostsService {
  async createPost(editable){
    const res = await api.post('api/posts', editable)
    AppState.posts.push(res.data)
+   AppState.posts = AppState.posts
  }
  async toggleLike(profile, post){
    if(profile === {}){

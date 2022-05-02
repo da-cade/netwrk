@@ -1,5 +1,6 @@
 <template>
-  
+  <div class="mt-5"></div>
+  <Post v-for="p in posts" :key="p.id" :post="p"/>
 </template>
 
 

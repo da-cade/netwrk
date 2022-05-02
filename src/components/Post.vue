@@ -2,7 +2,7 @@
   <div class="row">
     <div class="col-12">
     
-      <div class="d-flex flex-wrap bg-secondary shadow rounded my-2 p-3"> 
+      <div class="d-flex flex-wrap post-bg shadow rounded my-2 p-3"> 
         <div class="col">
           <div class="d-flex align-items-center">
             <div class="toProfile p-2">
@@ -34,11 +34,11 @@
             <img class="post-image" :src="post.imgUrl" alt="">
           </div>
         </div>
-        <div class="col-12 d-flex justify-content-end mt-2" v-if="profile.id">
-          <span>
+        <div class="col-12 fs-5 d-flex justify-content-end mt-2" v-if="profile.id">
+          <p class="">
             {{ post.likeIds.length }}
-          </span>
-          <div @click="toggleLike()">
+          </p>
+          <div class="" @click="toggleLike()">
             <i v-if="state.liked" class="mdi mdi-heart hover m-0 p-0"></i>
             <i v-if="!state.liked" class="mdi mdi-heart-outline hover m-0 p-0"></i>
             <!-- TODO -->
@@ -101,7 +101,7 @@ export default {
       },
       async deletePost(){
         try {
-          if(await Pop.confirm){
+          if(await Pop.confirm()){
             await postsService.deletePost(props.post) 
           }
         } catch (error) {
@@ -127,6 +127,9 @@ export default {
   .post-image{
     object-fit: cover;
     max-width: 100%;
+  }
+  .post-bg{
+    background-color: #c9ade4;
   }
   
 </style>
