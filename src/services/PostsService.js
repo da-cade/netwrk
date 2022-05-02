@@ -15,7 +15,6 @@ class PostsService {
  }
  async getByQuery(params){
    const res = await api.get('api/posts/', { params })
-   console.log(res.data.posts)
    AppState.searchResults = res.data.posts
    AppState.pageData = {
     page: res.data.page,
@@ -26,7 +25,6 @@ class PostsService {
  }
  async getByPage(index){
   const res = await api.get('api/posts/?page=' + index)
-  console.log(res.data)
   AppState.pageData = {
     page: res.data.page,
     totalPages: res.data.totalPages,

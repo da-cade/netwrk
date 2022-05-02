@@ -9,7 +9,6 @@ class AccountService {
       const res = await api.get('/account')
       AppState.account = res.data
       await profilesService.getMyProfile(res.data.id)
-      console.log(res.data)
     } catch (err) {
       logger.error('HAVE YOU STARTED YOUR SERVER YET???', err)
     }

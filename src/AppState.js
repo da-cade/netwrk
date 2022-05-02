@@ -8,6 +8,7 @@ export const AppState = reactive({
   pageData: {},
   activeProfile: {},
   myProfile: {},
-  searchResults: {},
+  searchResults: [],
+  foundProfiles: [],
   flags: []
 })

@@ -27,12 +27,11 @@ export default {
           if(query.value.search !== undefined){
             const input = query.value.search
             await postsService.getByQuery({ body: input })
-            // await postsService.getByQuery({ name: input })
+            await profilesService.getByQuery({ name: input })
+            // we can only search profiles by ID NOTE
             router.push({name: 'SearchPage'})
             query.value.search = ''
           }
-          // we can only search profiles by ID NOTE
-          // await profilesService.getProfilesByQuery({ name: input, class: input })
         } catch (error) {
           logger.error(error)
           Pop.toast(error.message, 'error')
@@ -45,7 +44,7 @@ export default {
 
 
 <style lang="scss" scoped>
-  I{
+  i{
     font-size: 18pt;
   }
   i:hover{
