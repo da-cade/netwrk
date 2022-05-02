@@ -23,19 +23,27 @@ class PostsService {
     older: res.data.older
   }
  }
- async getByPage(index){
-  const res = await api.get('api/posts/?page=' + index)
+ async getByPage(index, user){
+  let res
+  if(!user){
+    res = await api.get('api/posts/?page=' + index)
+    AppState.posts = res.data.posts
+  }
+  else {
+    res = await api.get('api/posts?creatorId=' + user.id + '&page=' + index)
+    AppState.searchResults = res.data.posts
+  }
   AppState.pageData = {
     page: res.data.page,
     totalPages: res.data.totalPages,
     newer: res.data.newer,
     older: res.data.older
   }
-  AppState.posts = res.data.posts
+  
  }
  async createPost(editable){
    const res = await api.post('api/posts', editable)
-   AppState.posts.push(res.data)
+   AppState.posts.unshift(res.data)
    AppState.posts = AppState.posts
  }
  async toggleLike(profile, post){

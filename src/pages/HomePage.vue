@@ -35,11 +35,7 @@
   </div>
   <Post v-for="p in state.posts" :key="p.id" :post="p" />
   <div class="row">
-    <div class="d-flex justify-content-end my-3">
-      <span class="" >{{pageData.page}}</span>
-      <span class="ms-2 hover"  v-if="pageData.newer" @click="newer()">Newer</span>
-      <span class="ms-2 hover"  v-if="pageData.older" @click="older()">Older</span>
-    </div>
+    <Pagination />
   </div>
 </template>
 
@@ -54,9 +50,10 @@ import { useRouter } from "vue-router"
 export default {
   name: 'Home',
   components: {
-    Post
+    Post,
   },
   setup(){
+    AppState.activeProfile = {}
     const state = reactive({
       posts: computed(() => AppState.posts),
       showInput: null
@@ -73,6 +70,10 @@ export default {
     })
   return {
     count: 1,
+    pageData: computed(() => AppState.pageData),
+    myProfile: computed(() => AppState.myProfile),
+    editable,
+    state,
     async newPost(){
       try {
         await postsService.createPost(editable.value)
@@ -91,31 +92,6 @@ export default {
       state.showInput = !state.showInput
       state.showInput ? document.getElementById('imgInput').style = "visibility: visible;" : document.getElementById('imgInput').style = "visibility: hidden;"
     },
-    async newer(){
-      try {
-        AppState.posts = []
-        this.count--
-        await postsService.getByPage(this.count)
-      } catch (error) {
-        logger.error(error)
-        Pop.toast(error.message, 'error')
-      }
-    },
-    async older(){
-      try {
-        AppState.posts = []
-        this.count++
-        console.log(this.count)
-        await postsService.getByPage(this.count)
-      } catch (error) {
-        logger.error(error)
-        Pop.toast(error.message, 'error')
-      }
-    },
-    myProfile: computed(() => AppState.myProfile),
-    pageData: computed(() => AppState.pageData),
-    editable,
-    state,
     }
   }
 }

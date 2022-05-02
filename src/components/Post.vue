@@ -11,13 +11,8 @@
             <div class="m-3 p-2">
               <h6>{{post.creator.name}}</h6>
               <div class="d-flex">
-                <p class="m-0">{{post.createdAt}}</p>
+                <p class="m-0">Posted: {{ new Date(post.createdAt).toDateString() }}</p>
                 <i v-if="post.creator.graduated" class="mdi mdi-school"></i> 
-                <!-- if they're a student?/ -->
-                <!-- <div v-if="account.id == profile.id"> -->
-                  <!-- //TODO make a dropdown list -->
-                  
-                <!-- </div> -->
               </div>
             </div>
           </div>
@@ -34,23 +29,18 @@
             <img class="post-image" :src="post.imgUrl" alt="">
           </div>
         </div>
-        <div class="col-12 fs-5 d-flex justify-content-end mt-2" v-if="profile.id">
+        <div class="col-12 fs-5 d-flex justify-content-end mt-2">
           <p class="">
             {{ post.likeIds.length }}
           </p>
-          <div class="" @click="toggleLike()">
+          <div v-if="profile.id" class="" @click="toggleLike()">
             <i v-if="state.liked" class="mdi mdi-heart hover m-0 p-0"></i>
             <i v-if="!state.liked" class="mdi mdi-heart-outline hover m-0 p-0"></i>
-            <!-- TODO -->
-            <!-- make input a checkbox
-            use icon for a check
-            check changes a post liked attribute
-            if true, add profile.id to ids and profile to likes
-            if false, send request again?
-            switch between icons accordingly -->
+          <div v-show="!profile.id">
+            <i class="mdi mdi-heart hover m-0 p-0"></i>
+          </div>
           </div>
           <i v-if="post.creatorId == account.id" class="mdi mdi-delete hover" @click="deletePost()"></i>
-          <!-- <input v-model="post.creatorId" type="checkbox" name="liked" id="liked"> -->
         </div>
       </div>
     
@@ -84,8 +74,6 @@ export default {
       state,
       profile: computed(() => AppState.myProfile),
       account: computed(() => AppState.account),
-      // liked: computed(() => {if(props.post.likeIds.includes(profile.id)){}
-      //   }),
       goToProfile(){
         router.push({ name: 'ProfilePage', params: { id: props.post.creatorId} })
       },

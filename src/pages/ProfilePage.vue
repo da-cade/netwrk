@@ -8,15 +8,15 @@
             <div class="d-flex align-items-center" style="position: relative; min-height: 100%;">
 
               <img class="profile-img rounded-circle hover" data-bs-toggle="modal" data-bs-target='#edit-profile-modal' :src="state.activeProfile.picture" alt="" v-if="state.activeProfile.id === myProfile.id">
-              <img class="profile-img rounded-circle hover" data-bs-toggle="modal" data-bs-target='#expand-image-modal' :src="state.activeProfile.picture" alt="" v-else>
+              <img class="profile-img rounded-circle hover" :src="state.activeProfile.picture" alt="" v-else>
               <!-- position relative float -->
             </div>
             <div class="d-flex justify-content-end">
               <i v-if="state.activeProfile.graduated" class="mdi mdi-school align-self-end" ></i>
               <div>
-                <i>🕶</i>
-                <i>🎥</i>
-                <i>✌</i>
+                <a v-if="state.activeProfile.github" target="blank" :href="state.activeProfile.github"><i class="mdi mdi-github me-2"></i></a>
+                <a v-if="state.activeProfile.resume" target="blank" :href="state.activeProfile.resume"><i class="mdi mdi-account-circle me-2"></i></a>
+                <a v-if="state.activeProfile.linkedin" target="blank" :href="state.activeProfile.linkedin"><i class="mdi mdi-linkedin me-2"></i></a>
               </div>
             </div>
             <div class="profile-info d-flex flex-column justify-content-end">
@@ -41,6 +41,9 @@
           <Post v-for="p in state.posts" :key="p.id" :post="p"/>
         </div>
       </div>
+      <div class="row">
+        <Pagination />
+      </div>
     </div>
       
   <Modal id="edit-profile-modal" >
@@ -51,7 +54,7 @@
     </template>
 
   </Modal>
-  <Modal id="expand-image-modal" >
+  <!-- <Modal id="expand-image-modal" >
     <template  #modal-title-slot>
     </template>
     <template #modal-body-slot>
@@ -59,7 +62,7 @@
         <img :src="state.activeProfile.picture" alt="">
       </div>
     </template>
-  </Modal>
+  </Modal> -->
 </template>
 
 
@@ -89,8 +92,30 @@ export default {
     })
     return {
       myProfile: computed(() => AppState.myProfile),
-      state
-      // introduce logic for setting profile on basis of id TODO
+      pageData: computed(() => AppState.pageData),
+      state,
+      count: 1,
+      async newer(){
+      try {
+        AppState.posts = []
+        this.count--
+        await postsService.getByPage(route.params.id, this.count)
+      } catch (error) {
+        logger.error(error)
+        Pop.toast(error.message, 'error')
+      }
+    },
+    async older(){
+      try {
+        AppState.posts = []
+        this.count++
+        console.log(this.count)
+        await postsService.getByPage(route.params.id, this.count)
+      } catch (error) {
+        logger.error(error)
+        Pop.toast(error.message, 'error')
+      }
+    }
     }
   }
 }

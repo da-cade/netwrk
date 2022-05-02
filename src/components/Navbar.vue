@@ -8,17 +8,6 @@
           <h3>A Very Sad Place</h3>
       </div>
       </router-link>
-    <!-- <button
-      class="navbar-toggler"
-      type="button"
-      data-bs-toggle="collapse"
-      data-bs-target="#navbarText"
-      aria-controls="navbarText"
-      aria-expanded="false"
-      aria-label="Toggle navigation"
-    >
-      <span class="navbar-toggler-icon" />
-    </button> -->
     <div class="ms-auto" >
       
       <!-- LOGIN COMPONENT HERE -->
