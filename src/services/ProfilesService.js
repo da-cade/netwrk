@@ -11,7 +11,7 @@ class ProfilesService {
    AppState.activeProfile = res.data
  }
  async getByQuery(params){
-  const res = await api.get('api/profiles?query=' + params )
+  const res = await api.get('api/profiles?query=', { params })
   AppState.foundProfiles = res.data
  }
 }
